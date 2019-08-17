@@ -1,6 +1,6 @@
 //https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 const axios = require('axios');
-const keys = require("./keys.js");
+const liri = require("./liri.js");
 
 function movieAPI(input) {
     var movieName = input;
