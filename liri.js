@@ -1,22 +1,22 @@
 require("dotenv").config();
-const keys = require("./keys.js");
+const inquirer = require("inquirer");
+
 //var spotify = new Spotify(keys.spotify);
 const fs = require("fs");
 class userRequest{
     constructor(f,q){
-        this.field = process.argv[2].toString().toLowerCase();
-        this.query = process.argv[3].toString().toLowerCase();
+        this.field = f;
+        this.query = q;
     }
 }
-function writeInputs(){
-    let ur = new userRequest();
+function writeInputs(ur){
     fs.writeFile("input.txt", JSON.stringify(ur), function(err) {
         if (err) {
             return console.log(err);
           }
+        const keys = require("./keys.js");
+        
     });
-   
- 
 }
 function grabKeys(){
     console.log(keys);
@@ -35,9 +35,26 @@ function readQuery(){
     });
 
 }
+function promptUser(){
+    inquirer.prompt([{
+        type:'input',
+        message:'what do you want to find?',
+        default:'song',
+        name:'menu'
+    },
+    {
+        type:'input',
+        meessage:'Enter the name or title:',
+        default:'I want it that way',
+        name:'title'
+
+    }]).then((inq)=>{
+        let ur = new userRequest(inq.menu,inq.title);
+        writeInputs(ur);
+    });
+}
 function main(){
-    writeInputs();
-    grabKeys();
-    //readQuery();
+    promptUser();
+    
 }
 main();

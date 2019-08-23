@@ -25,6 +25,10 @@ function spotifyAPI(input){
         if (err) {
           return console.log('Error occurred: ' + err);
         }
+        console.log(data.tracks.items[0].artists[0].name);
+        console.log(data.tracks.items[0].name);
+        console.log(data.tracks.items[0].preview_url);
+        console.log(data.tracks.items[0].album.name);
       });
 
 }
@@ -36,6 +40,7 @@ function movieAPI(input) {
             url: 'http://www.omdbapi.com/?t=' + movieName + '&apikey=8fcc4e9e',
         })
         .then((response)=> {
+            
             console.log(`Title: ${response.data.Title}`);
             console.log(`Release Date: ${response.data.Title}`);
             console.log(`IMDB Rating: ${response.data.Ratings[0].Value}`);
@@ -54,8 +59,16 @@ function concertAPI(input){
             url: 'https://rest.bandsintown.com/artists/' + artist + '/events?app_id=codingbootcamp',
         })
         .then((response)=> {
-            console.log("here we go");
-            console.log(response);
+            let concertArr = [];
+            for(let i = 0; i < 10; i++){
+                concertArr.push(response.data[i]);
+            }
+            concertArr.forEach((index)=>{
+                console.log("Concert date: "+index.datetime);
+                console.log("Venue: "+index.venue.name);
+                console.log('City: '+index.venue.city+", "+index.venue.region);
+            });
+
         });
         //need to get: date name of venue and venue location/address
 
@@ -66,7 +79,7 @@ function takeActions(field, query){
             movieAPI(query);
             break;
         }
-        case "concert":{
+        case "concerts":{
             concertAPI(query);
             break;
         }
@@ -74,18 +87,14 @@ function takeActions(field, query){
             spotifyAPI(query);
             break;
         }
+        default:{
+            break;
+
+        }
     }
 
 }
-function writeOutput(arr){
-    let passArr =[];
-    arr.forEach((index)=>{
-        passArr.push(index);
 
-    });
-    module.exports = passArr;
-    
-}
 function main(){
     readInput();
     module.exports = "sending......";
