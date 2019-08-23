@@ -64,7 +64,8 @@ function concertAPI(input){
                 concertArr.push(response.data[i]);
             }
             concertArr.forEach((index)=>{
-                console.log("Concert date: "+index.datetime);
+                let date = grabDate(index.datetime);
+                console.log("Concert date: "+date);
                 console.log("Venue: "+index.venue.name);
                 console.log('City: '+index.venue.city+", "+index.venue.region);
             });
@@ -75,15 +76,15 @@ function concertAPI(input){
 }
 function takeActions(field, query){
     switch(field){
-        case "movie":{
+        case "movie-this":{
             movieAPI(query);
             break;
         }
-        case "concerts":{
+        case "concerts-this":{
             concertAPI(query);
             break;
         }
-        case "song":{
+        case "spotify-this":{
             spotifyAPI(query);
             break;
         }
@@ -92,6 +93,13 @@ function takeActions(field, query){
 
         }
     }
+
+}
+function grabDate(string){
+    const moment = require('moment');
+    let dateMod = string.substr(0,10);
+    return(moment(dateMod,'YYYY-MM-DD').format('MM/DD/YYYY'));
+    
 
 }
 

@@ -44,7 +44,7 @@ function promptUser(){
     },
     {
         type:'input',
-        meessage:'Enter the name or title:',
+        meessage:'Sure what do you want to look up?:',
         default:'I want it that way',
         name:'title'
 
