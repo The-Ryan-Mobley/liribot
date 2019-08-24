@@ -6,7 +6,6 @@ const Spotify = require('node-spotify-api');
 const keys = require('./keys.js');
 const spotify = new Spotify(keys.spotify);
 
-
 class userRequest {
     constructor(f, q) {
         this.field = f;
@@ -21,25 +20,6 @@ function logInputs(ur) {
         }
 
     });
-}
-
-function grabKeys() {
-    console.log(keys);
-}
-
-function readQuery() {
-    fs.readFile("querys.txt", "utf8", (err, data) => {
-        if (err) {
-            return console.log(err);
-        }
-        let output = data.split(',');
-        output.forEach((index) => {
-            console.log(index);
-
-        });
-
-    });
-
 }
 
 function promptUser() {
@@ -78,10 +58,8 @@ function promptUser() {
             default: {
                 ReadRandom();
                 break;
-
             }
         }
-
     }
 }
 
@@ -163,4 +141,4 @@ function main() {
     promptUser();
 
 }
-main();
+main(); //code starts here
