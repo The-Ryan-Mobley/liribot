@@ -1,1 +1,1 @@
-{"field":"spotify-this","query":"hush"}{"field":"concerts-this","query":"iron maiden"}
+{"field":"spotify-this","query":"hush"}{"field":"concerts-this","query":"iron maiden"}{"field":"spotify-this","query":"parabola"}{"field":"movie-this","query":"shrek"}{"field":"spotify-this","query":"parabola"}{"field":"movie-this","query":"shrek"}{"field":"concert-this","query":"iron maiden"}{"field":"","query":""}{"field":"movie-this","query":"grandma's house"}

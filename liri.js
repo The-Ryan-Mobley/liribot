@@ -13,7 +13,6 @@ class userRequest {
         this.query = q;
     }
 }
-var obj = undefined;
 
 function logInputs(ur) {
     fs.appendFileSync('log.txt', JSON.stringify(ur), (err) => {
@@ -51,23 +50,15 @@ function promptUser() {
         },
         {
             type: 'input',
-            meessage: 'Sure what do you want to look up?:',
+            message: 'Sure what do you want to look up?:',
             name: 'title'
 
         }
     ]).then((inq) => {
-        let list = [];
-        let fault = new userRequest('spotify-this', 'I want it that way');
-        list.push(fault);
         let ur = new userRequest(inq.menu, inq.title);
-        list.push(ur);
-        let passReq = new userRequest('', '');
-        list.forEach((index) => {
-            passReq.field = index.field;
-            passReq.query = index.query;
-        });
-        takeActions(passReq.field,passReq.query);
-        logInputs(passReq);
+        
+        takeActions(ur.field,ur.query);
+        logInputs(ur);
     });
 
     function takeActions(field, query) {
